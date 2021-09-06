@@ -8,10 +8,18 @@ export class Segment {
   constructor (a, b) {
     this.a = a
     this.b = b
+  }
 
-    this.length = Point.distance(a, b)
-    this.center = calculateCenter(a, b)
-    this.slope = calculateSlope(a, b)
+  get length () {
+    return Point.distance(this.a, this.b)
+  }
+
+  get center () {
+    return calculateCenter(this.a, this.b)
+  }
+
+  get slope () {
+    return calculateSlope(this.a, this.b)
   }
 
   /**

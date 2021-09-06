@@ -15,10 +15,18 @@ export class Triangle {
     this.a = ab.a
     this.b = (this.a === bc.a ? bc.b : bc.a)
     this.c = (this.b === ca.a ? ca.b : ca.a)
+  }
 
-    this.circumcenter = calculateCircumcenter(this.a, this.b, this.c)
-    this.circumradius = calculateCircumradius(this.a, this.b, this.c)
-    this.centroid = calculateCentroid(this.a, this.b, this.c)
+  get circumcenter () {
+    return calculateCircumcenter(this.a, this.b, this.c)
+  }
+
+  get circumradius () {
+    return calculateCircumradius(this.a, this.b, this.c)
+  }
+
+  get centroid () {
+    return calculateCentroid(this.a, this.b, this.c)
   }
 
   /**
