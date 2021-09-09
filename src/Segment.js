@@ -30,6 +30,17 @@ export class Segment {
   has (point) {
     return (point === this.a || point === this.b)
   }
+
+  /**
+   * @param {Segment} segment
+   * @param {Point} point
+   */
+  static pointSide (segment, point) {
+    return Math.sign(
+      (segment.b.x - segment.a.x) * (point.y - segment.a.y) -
+      (segment.b.y - segment.a.y) * (point.x - segment.a.x)
+    )
+  }
 }
 
 /**
