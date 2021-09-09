@@ -30,6 +30,13 @@ export class Triangle {
   }
 
   /**
+   * @returns {number} CW (1) or CCW (-1)
+   */
+  get orientation () {
+    return calculateOrientation(this.a, this.b, this.c)
+  }
+
+  /**
    * @param {Point|Segment} pointOrSegment
    *
    * @returns {boolean} If this Triangle have this Point/Segment as one of its vertices/edges
@@ -44,6 +51,14 @@ export class Triangle {
     }
 
     throw new Error('Expected "pointOrSegment" to be of type Point or Segment')
+  }
+
+  // TODO: Change syntax after ESlint 8 / Standard update
+  static get Orientation () {
+    return Object.freeze({
+      CW: 1,
+      CCW: -1
+    })
   }
 }
 
@@ -100,5 +115,17 @@ const calculateCircumcenter = (a, b, c) => {
       (b.x * b.x + b.y * b.y) * (c.x - a.x) +
       (c.x * c.x + c.y * c.y) * (a.x - b.x)
     ) / d
+  )
+}
+
+/**
+ * @param {Point} a
+ * @param {Point} b
+ * @param {Point} c
+ */
+const calculateOrientation = (a, b, c) => {
+  return Math.sign(
+    (b.x - a.x) * (c.y - a.y) -
+    (c.x - a.x) * (b.y - a.y)
   )
 }
