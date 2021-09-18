@@ -29,11 +29,15 @@ export class Triangle {
     return calculateCentroid(this.a, this.b, this.c)
   }
 
+  get area () {
+    return calculateArea(this.a, this.b, this.c)
+  }
+
   /**
    * @returns {number} CW (1) or CCW (-1)
    */
-  get orientation () {
-    return calculateOrientation(this.a, this.b, this.c)
+  get winding () {
+    return calculateWinding(this.a, this.b, this.c)
   }
 
   /**
@@ -54,7 +58,7 @@ export class Triangle {
   }
 
   // TODO: Change syntax after ESlint 8 / Standard update
-  static get Orientation () {
+  static get Winding () {
     return Object.freeze({
       CW: 1,
       CCW: -1
@@ -123,7 +127,20 @@ const calculateCircumcenter = (a, b, c) => {
  * @param {Point} b
  * @param {Point} c
  */
-const calculateOrientation = (a, b, c) => {
+const calculateArea = (a, b, c) => {
+  return 0.5 * (
+    a.x * (b.y - c.y) +
+    b.x * (c.y - a.y) +
+    c.x * (a.y - b.y)
+  )
+}
+
+/**
+ * @param {Point} a
+ * @param {Point} b
+ * @param {Point} c
+ */
+const calculateWinding = (a, b, c) => {
   return Math.sign(
     (b.x - a.x) * (c.y - a.y) -
     (c.x - a.x) * (b.y - a.y)

@@ -16,7 +16,7 @@ export class Point {
    * @returns {number} Distance between Point A and Point B
    */
   static distance (a, b) {
-    return Math.sqrt(Math.abs((b.x - a.x) * (b.x - a.x)) + Math.abs((b.y - a.y) * (b.y - a.y)))
+    return Math.sqrt((b.x - a.x) ** 2 + (b.y - a.y) ** 2)
   }
 
   /**
